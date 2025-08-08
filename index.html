@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Futura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #ffb8c6;
+            --accent: #ff4757;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff9fb;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .heart {
+            position: absolute;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+        
+        .title-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .message-box {
+            background: linear-gradient(135deg, #fff 0%, #ffecef 100%);
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.2);
+            transform: perspective(500px) rotateX(5deg);
+            transition: all 0.3s ease;
+        }
+        
+        .message-box:hover {
+            transform: perspective(500px) rotateX(0deg);
+            box-shadow: 0 15px 40px rgba(255, 107, 139, 0.3);
+        }
+        
+        .photo-frame {
+            border: 8px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.4);
+        }
+        
+        .btn-heart {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-heart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.5s;
+        }
+        
+        .btn-heart:hover::before {
+            left: 100%;
+        }
+        
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .heart-beat {
+            animation: heartBeat 1.5s infinite;
+        }
+        
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.3); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.3); }
+            70% { transform: scale(1); }
+        }
+        
+        .polaroid {
+            background: white;
+            padding: 1rem 1rem 2rem 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+        }
+        
+        .polaroid:nth-child(even) {
+            transform: rotate(2deg);
+        }
+        
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+        
+        .polaroid-caption {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            margin-top: 0.5rem;
+            color: #666;
+        }
+        
+        .memory-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .memory-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(255, 107, 139, 0.2);
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+    <!-- Floating hearts background -->
+    <div class="floating-hearts" id="hearts-container"></div>
+    
+    <!-- Main content -->
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="title-font text-5xl md:text-6xl font-bold text-pink-600 mb-4 pulse">Para Minha Futura</h1>
+            <div class="w-24 h-1 bg-pink-300 mx-auto mb-6"></div>
+            <p class="text-pink-500 text-lg">Um presente do coração para a pessoa mais especial</p>
+        </header>
+        
+        <!-- Message section -->
+        <section class="mb-16">
+            <div class="message-box rounded-xl p-6 md:p-8 mb-8">
+                <h2 class="title-font text-3xl md:text-4xl text-pink-600 mb-6 text-center">Olá Futura!</h2>
+                <p class="text-gray-700 mb-4 text-lg leading-relaxed">
+                    Eu criei esse site porque queria te mostrar o quanto eu gosto de você e o quanto eu quero fazer dar certo. Tirei um tempinho para aprender programação só para fazer isso - sei que é algo simples, mas queria arrancar um sorriso desse rostinho lindo.
+                </p>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    Sei que sou muito grudento e falo muitas coisas melosas (você já sabe como eu sou  😅), mas é porque gosto MUITO de você. Cada dia ao seu lado é especial pra mim.
+                </p>
+            </div>
+            
+            <div class="flex justify-center">
+                <button id="loveButton" class="btn-heart relative bg-gradient-to-r from-pink-500 to-pink-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-heart mr-2 heart-beat"></i> Te amo muito!
+                </button>
+            </div>
+        </section>
+        
+        <!-- Anniversary section -->
+        <section class="mb-16">
+            <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 shadow-inner">
+                <h2 class="title-font text-3xl text-pink-600 mb-6 text-center">Nosso 1 Ano Juntos</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-pink-600 mb-2">1</div>
+                        <div class="text-xl text-pink-500">Ano</div>
+                    </div>
+                    <div class="hidden md:block text-pink-400 text-4xl">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <div class="text-3xl font-bold text-pink-600">12</div>
+                            <div class="text-sm text-pink-500">Meses</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-pink-600">52</div>
+                            <div class="text-sm text-pink-500">Semanas</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-pink-600">365</div>
+                            <div class="text-sm text-pink-500">Dias</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Photo gallery -->
+        <section class="mb-16">
+            <h2 class="title-font text-3xl text-pink-600 mb-8 text-center">Nossos Momentos</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Polaroid style photos with captions -->
+                <div class="polaroid">
+                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
+                        <i class="fas fa-heart text-5xl text-pink-400"></i>
+                    </div>
+                    <div class="polaroid-caption">Nosso primeiro encontro</div>
+                </div>
+                <div class="polaroid">
+                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
+                        <i class="fas fa-heart text-5xl text-pink-400"></i>
+                    </div>
+                    <div class="polaroid-caption">Aquele dia especial</div>
+                </div>
+                <div class="polaroid">
+                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
+                        <i class="fas fa-heart text-5xl text-pink-400"></i>
+                    </div>
+                    <div class="polaroid-caption">Rindo juntos</div>
+                </div>
+                <div class="polaroid">
+                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
+                        <i class="fas fa-heart text-5xl text-pink-400"></i>
+                    </div>
+                    <div class="polaroid-caption">Nosso primeiro ano</div>
+                </div>
+                <div class="polaroid">
+                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
+                        <i class="fas fa-heart text-5xl text-pink-400"></i>
+                    </div>
+                    <div class="polaroid-caption">Momentos únicos</div>
+                </div>
+                <div class="polaroid">
+                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
+                        <i class="fas fa-heart text-5xl text-pink-400"></i>
+                    </div>
+                    <div class="polaroid-caption">Mais para vir...</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Reasons I love you -->
+        <section class="mb-16">
+            <h2 class="title-font text-3xl text-pink-600 mb-8 text-center">Razões Pelas Quais Eu Te Amo</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="memory-card">
+                    <div class="flex items-center mb-3">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-smile text-pink-500"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-pink-600">Seu sorriso</h3>
+                    </div>
+                    <p class="text-gray-700">O jeito como seu sorriso ilumina até os dias mais cinzentos e faz tudo parecer melhor.</p>
+                </div>
+                <div class="memory-card">
+                    <div class="flex items-center mb-3">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-laugh-beam text-pink-500"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-pink-600">Seu jeito</h3>
+                    </div>
+                    <p class="text-gray-700">A forma única como você vê o mundo e me faz rir mesmo nos momentos mais aleatórios.</p>
+                </div>
+                <div class="memory-card">
+                    <div class="flex items-center mb-3">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-hand-holding-heart text-pink-500"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-pink-600">Seu carinho</h3>
+                    </div>
+                    <p class="text-gray-700">O cuidado e atenção que você tem comigo, mesmo nas pequenas coisas.</p>
+                </div>
+                <div class="memory-card">
+                    <div class="flex items-center mb-3">
+                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-star text-pink-500"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-pink-600">Sua essência</h3>
+                    </div>
+                    <p class="text-gray-700">A pessoa incrível que você é - inteligente, divertida, e com um coração enorme.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Countdown -->
+        <section class="mb-16">
+            <h2 class="title-font text-3xl text-pink-600 mb-8 text-center">Nosso Tempo Juntos</h2>
+            <div class="bg-gradient-to-r from-pink-100 to-pink-50 rounded-xl p-6 shadow-inner">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="bg-white rounded-lg p-4 shadow">
+                        <div class="text-3xl md:text-4xl font-bold text-pink-600" id="days">00</div>
+                        <div class="text-sm text-gray-500">Dias</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow">
+                        <div class="text-3xl md:text-4xl font-bold text-pink-600" id="hours">00</div>
+                        <div class="text-sm text-gray-500">Horas</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow">
+                        <div class="text-3xl md:text-4xl font-bold text-pink-600" id="minutes">00</div>
+                        <div class="text-sm text-gray-500">Minutos</div>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 shadow">
+                        <div class="text-3xl md:text-4xl font-bold text-pink-600" id="seconds">00</div>
+                        <div class="text-sm text-gray-500">Segundos</div>
+                    </div>
+                </div>
+                <div class="mt-6 text-center text-pink-500">
+                    <i class="fas fa-heart mr-2"></i> Cada segundo com você é especial
+                </div>
+            </div>
+        </section>
+        
+        <!-- Future promises -->
+        <section class="mb-16">
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h3 class="title-font text-2xl text-pink-600 mb-4 text-center">Promessas Para Nosso Futuro</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <i class="fas fa-heart text-pink-400 mr-3"></i>
+                        </div>
+                        <p class="text-gray-700">Prometo continuar te fazendo sorrir todos os dias, mesmo quando estivermos velhinhos.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <i class="fas fa-heart text-pink-400 mr-3"></i>
+                        </div>
+                        <p class="text-gray-700">Vamos criar muitos mais momentos especiais juntos e construir uma história linda.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <i class="fas fa-heart text-pink-400 mr-3"></i>
+                        </div>
+                        <p class="text-gray-700">Sempre vou te apoiar e estar ao seu lado, nos bons e maus momentos.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 mt-1">
+                            <i class="fas fa-heart text-pink-400 mr-3"></i>
+                        </div>
+                        <p class="text-gray-700">Vamos continuar aprendendo um com o outro e crescendo juntos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Final message -->
+        <section class="text-center">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+                <h3 class="title-font text-2xl text-pink-600 mb-4">Obrigado por Existir</h3>
+                <p class="text-gray-700 mb-4">
+                    Cada momento ao seu lado nesse primeiro ano foi um presente que eu guardo com carinho no meu coração.
+                </p>
+                <p class="text-gray-700">
+                    Espero que este pequeno gesto mostre um pouco do que sinto por você. Mal posso esperar pelos próximos anos ao seu lado!
+                </p>
+            </div>
+            
+            <div class="flex justify-center space-x-4 mb-12">
+                <a href="#" class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors transform hover:scale-110">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors transform hover:scale-110">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+                <a href="#" class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors transform hover:scale-110">
+                    <i class="fas fa-heart text-xl"></i>
+                </a>
+            </div>
+            
+            <div class="bg-pink-50 rounded-xl p-6 inline-block max-w-md">
+                <div class="title-font text-xl text-pink-600 mb-2">Para minha futura...</div>
+                <div class="text-pink-500">Com todo meu amor,</div>
+                <div class="title-font text-2xl text-pink-600 mt-2">Seu Amor</div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-pink-50 py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-pink-600">Feito com <i class="fas fa-heart text-pink-600"></i> especialmente para você</p>
+            <p class="text-pink-400 text-sm mt-2">© <span id="year"></span> - Nosso primeiro ano juntos</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            const heartCount = 30;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart text-pink-400';
+                heart.innerHTML = '<i class="fas fa-heart"></i>';
+                
+                // Random position
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                
+                // Random size
+                const size = Math.random() * 20 + 10;
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 5 + 5;
+                const delay = Math.random() * 5;
+                
+                heart.style.left = `${posX}%`;
+                heart.style.top = `${posY}%`;
+                heart.style.fontSize = `${size}px`;
+                heart.style.opacity = Math.random() * 0.5 + 0.3;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Countdown timer
+        function updateCountdown() {
+            // Set your anniversary date here (YYYY, MM-1, DD)
+            const anniversaryDate = new Date(2023, 0, 1); // January 1, 2023 (MM is 0-indexed)
+            const now = new Date();
+            
+            const diff = now - anniversaryDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#ff6b8b', '#ffb8c6', '#ff4757', '#ff8fab', '#ffc4d0'];
+            const container = document.createElement('div');
+            container.style.position = 'fixed';
+            container.style.top = '0';
+            container.style.left = '0';
+            container.style.width = '100%';
+            container.style.height = '100%';
+            container.style.pointerEvents = 'none';
+            container.style.zIndex = '1000';
+            
+            document.body.appendChild(container);
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                
+                container.appendChild(confetti);
+                
+                const animationDuration = Math.random() * 3 + 2;
+                
+                confetti.animate([
+                    { top: '-10px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: animationDuration * 1000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)',
+                    fill: 'forwards'
+                });
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, animationDuration * 1000);
+            }
+            
+            setTimeout(() => {
+                container.remove();
+            }, 3000);
+        }
+        
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Add confetti effect to love button
+            document.getElementById('loveButton').addEventListener('click', function() {
+                createConfetti();
+                
+                // Create a floating heart that grows and fades out
+                const floatingHeart = document.createElement('div');
+                floatingHeart.innerHTML = '<i class="fas fa-heart"></i>';
+                floatingHeart.style.position = 'fixed';
+                floatingHeart.style.color = '#ff6b8b';
+                floatingHeart.style.fontSize = '20px';
+                floatingHeart.style.left = '50%';
+                floatingHeart.style.top = '50%';
+                floatingHeart.style.transform = 'translate(-50%, -50%)';
+                floatingHeart.style.zIndex = '1000';
+                floatingHeart.style.pointerEvents = 'none';
+                
+                document.body.appendChild(floatingHeart);
+                
+                floatingHeart.animate([
+                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+                    { transform: 'translate(-50%, -150%) scale(3)', opacity: 0 }
+                ], {
+                    duration: 1500,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                });
+                
+                setTimeout(() => {
+                    floatingHeart.remove();
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
