@@ -1,170 +1,45 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Minha Futura</title>
+    <title>Parabéns Katarina Francisco!</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
-        
-        :root {
-            --primary: #ff6b8b;
-            --secondary: #ffb8c6;
-            --accent: #ff4757;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
         
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #fff9fb;
-            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             overflow-x: hidden;
         }
         
+        .dancing-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
         .heart {
-            position: absolute;
-            pointer-events: none;
-            animation: float 6s ease-in-out infinite;
+            animation: heartbeat 1.5s infinite;
         }
         
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(10deg);
-            }
-        }
-        
-        .title-font {
-            font-family: 'Dancing Script', cursive;
-        }
-        
-        .message-box {
-            background: linear-gradient(135deg, #fff 0%, #ffecef 100%);
-            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.2);
-            transform: perspective(500px) rotateX(5deg);
-            transition: all 0.3s ease;
-        }
-        
-        .message-box:hover {
-            transform: perspective(500px) rotateX(0deg);
-            box-shadow: 0 15px 40px rgba(255, 107, 139, 0.3);
-        }
-        
-        .photo-frame {
-            border: 8px solid white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .photo-frame:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.4);
-        }
-        
-        .btn-heart {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn-heart::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: all 0.5s;
-        }
-        
-        .btn-heart:hover::before {
-            left: 100%;
-        }
-        
-        .floating-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .gallery-item {
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        
-        .heart-beat {
-            animation: heartBeat 1.5s infinite;
-        }
-        
-        @keyframes heartBeat {
+        @keyframes heartbeat {
             0% { transform: scale(1); }
-            14% { transform: scale(1.3); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.3); }
-            70% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         
-        .polaroid {
-            background: white;
-            padding: 1rem 1rem 2rem 1rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transform: rotate(-2deg);
-            transition: all 0.3s ease;
+        .floating {
+            animation: floating 3s ease-in-out infinite;
         }
         
-        .polaroid:nth-child(even) {
-            transform: rotate(2deg);
-        }
-        
-        .polaroid:hover {
-            transform: rotate(0deg) scale(1.05);
-        }
-        
-        .polaroid-caption {
-            font-family: 'Dancing Script', cursive;
-            text-align: center;
-            margin-top: 0.5rem;
-            color: #666;
-        }
-        
-        .memory-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .memory-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(255, 107, 139, 0.2);
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
         }
         
         .confetti {
@@ -172,400 +47,301 @@
             width: 10px;
             height: 10px;
             background-color: #f00;
-            opacity: 0;
+            opacity: 0.7;
+            animation: confetti-fall 5s linear infinite;
         }
-    </style>
-</head>
-<body class="min-h-screen relative overflow-x-hidden">
-    <!-- Floating hearts background -->
-    <div class="floating-hearts" id="hearts-container"></div>
-    
-    <!-- Main content -->
-    <div class="container mx-auto px-4 py-8 max-w-4xl">
-        <!-- Header -->
-        <header class="text-center mb-12">
-            <h1 class="title-font text-5xl md:text-6xl font-bold text-pink-600 mb-4 pulse">Para Minha Futura</h1>
-            <div class="w-24 h-1 bg-pink-300 mx-auto mb-6"></div>
-            <p class="text-pink-500 text-lg">Um presente do coração para a pessoa mais especial</p>
-        </header>
         
-        <!-- Message section -->
-        <section class="mb-16">
-            <div class="message-box rounded-xl p-6 md:p-8 mb-8">
-                <h2 class="title-font text-3xl md:text-4xl text-pink-600 mb-6 text-center">Olá Futura!</h2>
-                <p class="text-gray-700 mb-4 text-lg leading-relaxed">
-                    Eu criei esse site porque queria te mostrar o quanto eu gosto de você e o quanto eu quero fazer dar certo. Tirei um tempinho para aprender programação só para fazer isso - sei que é algo simples, mas queria arrancar um sorriso desse rostinho lindo.
-                </p>
-                <p class="text-gray-700 text-lg leading-relaxed">
-                    Sei que sou muito grudento e falo muitas coisas melosas (você já sabe como eu sou  😅), mas é porque gosto MUITO de você. Cada dia ao seu lado é especial pra mim.
-                </p>
-            </div>
-            
-            <div class="flex justify-center">
-                <button id="loveButton" class="btn-heart relative bg-gradient-to-r from-pink-500 to-pink-600 text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                    <i class="fas fa-heart mr-2 heart-beat"></i> Te amo muito!
-                </button>
-            </div>
-        </section>
+        .petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+            animation: petal-fall 8s linear infinite;
+        }
         
-        <!-- Anniversary section -->
-        <section class="mb-16">
-            <div class="bg-gradient-to-br from-pink-50 to-pink-100 rounded-2xl p-6 shadow-inner">
-                <h2 class="title-font text-3xl text-pink-600 mb-6 text-center">Nosso 1 Ano Juntos</h2>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
-                    <div class="text-center">
-                        <div class="text-6xl font-bold text-pink-600 mb-2">1</div>
-                        <div class="text-xl text-pink-500">Ano</div>
-                    </div>
-                    <div class="hidden md:block text-pink-400 text-4xl">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <div class="grid grid-cols-3 gap-4 text-center">
-                        <div>
-                            <div class="text-3xl font-bold text-pink-600">12</div>
-                            <div class="text-sm text-pink-500">Meses</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-pink-600">52</div>
-                            <div class="text-sm text-pink-500">Semanas</div>
-                        </div>
-                        <div>
-                            <div class="text-3xl font-bold text-pink-600">365</div>
-                            <div class="text-sm text-pink-500">Dias</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Photo gallery -->
-        <section class="mb-16">
-            <h2 class="title-font text-3xl text-pink-600 mb-8 text-center">Nossos Momentos</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Polaroid style photos with captions -->
-                <div class="polaroid">
-                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
-                        <i class="fas fa-heart text-5xl text-pink-400"></i>
-                    </div>
-                    <div class="polaroid-caption">Nosso primeiro encontro</div>
-                </div>
-                <div class="polaroid">
-                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
-                        <i class="fas fa-heart text-5xl text-pink-400"></i>
-                    </div>
-                    <div class="polaroid-caption">Aquele dia especial</div>
-                </div>
-                <div class="polaroid">
-                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
-                        <i class="fas fa-heart text-5xl text-pink-400"></i>
-                    </div>
-                    <div class="polaroid-caption">Rindo juntos</div>
-                </div>
-                <div class="polaroid">
-                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
-                        <i class="fas fa-heart text-5xl text-pink-400"></i>
-                    </div>
-                    <div class="polaroid-caption">Nosso primeiro ano</div>
-                </div>
-                <div class="polaroid">
-                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
-                        <i class="fas fa-heart text-5xl text-pink-400"></i>
-                    </div>
-                    <div class="polaroid-caption">Momentos únicos</div>
-                </div>
-                <div class="polaroid">
-                    <div class="photo-frame rounded-lg overflow-hidden aspect-square bg-pink-100 flex items-center justify-center">
-                        <i class="fas fa-heart text-5xl text-pink-400"></i>
-                    </div>
-                    <div class="polaroid-caption">Mais para vir...</div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Reasons I love you -->
-        <section class="mb-16">
-            <h2 class="title-font text-3xl text-pink-600 mb-8 text-center">Razões Pelas Quais Eu Te Amo</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="memory-card">
-                    <div class="flex items-center mb-3">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
-                            <i class="fas fa-smile text-pink-500"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-pink-600">Seu sorriso</h3>
-                    </div>
-                    <p class="text-gray-700">O jeito como seu sorriso ilumina até os dias mais cinzentos e faz tudo parecer melhor.</p>
-                </div>
-                <div class="memory-card">
-                    <div class="flex items-center mb-3">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
-                            <i class="fas fa-laugh-beam text-pink-500"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-pink-600">Seu jeito</h3>
-                    </div>
-                    <p class="text-gray-700">A forma única como você vê o mundo e me faz rir mesmo nos momentos mais aleatórios.</p>
-                </div>
-                <div class="memory-card">
-                    <div class="flex items-center mb-3">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
-                            <i class="fas fa-hand-holding-heart text-pink-500"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-pink-600">Seu carinho</h3>
-                    </div>
-                    <p class="text-gray-700">O cuidado e atenção que você tem comigo, mesmo nas pequenas coisas.</p>
-                </div>
-                <div class="memory-card">
-                    <div class="flex items-center mb-3">
-                        <div class="flex-shrink-0 h-10 w-10 rounded-full bg-pink-100 flex items-center justify-center mr-3">
-                            <i class="fas fa-star text-pink-500"></i>
-                        </div>
-                        <h3 class="text-lg font-semibold text-pink-600">Sua essência</h3>
-                    </div>
-                    <p class="text-gray-700">A pessoa incrível que você é - inteligente, divertida, e com um coração enorme.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Countdown -->
-        <section class="mb-16">
-            <h2 class="title-font text-3xl text-pink-600 mb-8 text-center">Nosso Tempo Juntos</h2>
-            <div class="bg-gradient-to-r from-pink-100 to-pink-50 rounded-xl p-6 shadow-inner">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div class="bg-white rounded-lg p-4 shadow">
-                        <div class="text-3xl md:text-4xl font-bold text-pink-600" id="days">00</div>
-                        <div class="text-sm text-gray-500">Dias</div>
-                    </div>
-                    <div class="bg-white rounded-lg p-4 shadow">
-                        <div class="text-3xl md:text-4xl font-bold text-pink-600" id="hours">00</div>
-                        <div class="text-sm text-gray-500">Horas</div>
-                    </div>
-                    <div class="bg-white rounded-lg p-4 shadow">
-                        <div class="text-3xl md:text-4xl font-bold text-pink-600" id="minutes">00</div>
-                        <div class="text-sm text-gray-500">Minutos</div>
-                    </div>
-                    <div class="bg-white rounded-lg p-4 shadow">
-                        <div class="text-3xl md:text-4xl font-bold text-pink-600" id="seconds">00</div>
-                        <div class="text-sm text-gray-500">Segundos</div>
-                    </div>
-                </div>
-                <div class="mt-6 text-center text-pink-500">
-                    <i class="fas fa-heart mr-2"></i> Cada segundo com você é especial
-                </div>
-            </div>
-        </section>
-        
-        <!-- Future promises -->
-        <section class="mb-16">
-            <div class="bg-white rounded-xl shadow-md p-6">
-                <h3 class="title-font text-2xl text-pink-600 mb-4 text-center">Promessas Para Nosso Futuro</h3>
-                <div class="space-y-4">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 mt-1">
-                            <i class="fas fa-heart text-pink-400 mr-3"></i>
-                        </div>
-                        <p class="text-gray-700">Prometo continuar te fazendo sorrir todos os dias, mesmo quando estivermos velhinhos.</p>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 mt-1">
-                            <i class="fas fa-heart text-pink-400 mr-3"></i>
-                        </div>
-                        <p class="text-gray-700">Vamos criar muitos mais momentos especiais juntos e construir uma história linda.</p>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 mt-1">
-                            <i class="fas fa-heart text-pink-400 mr-3"></i>
-                        </div>
-                        <p class="text-gray-700">Sempre vou te apoiar e estar ao seu lado, nos bons e maus momentos.</p>
-                    </div>
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 mt-1">
-                            <i class="fas fa-heart text-pink-400 mr-3"></i>
-                        </div>
-                        <p class="text-gray-700">Vamos continuar aprendendo um com o outro e crescendo juntos.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Final message -->
-        <section class="text-center">
-            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
-                <h3 class="title-font text-2xl text-pink-600 mb-4">Obrigado por Existir</h3>
-                <p class="text-gray-700 mb-4">
-                    Cada momento ao seu lado nesse primeiro ano foi um presente que eu guardo com carinho no meu coração.
-                </p>
-                <p class="text-gray-700">
-                    Espero que este pequeno gesto mostre um pouco do que sinto por você. Mal posso esperar pelos próximos anos ao seu lado!
-                </p>
-            </div>
-            
-            <div class="flex justify-center space-x-4 mb-12">
-                <a href="#" class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors transform hover:scale-110">
-                    <i class="fab fa-instagram text-xl"></i>
-                </a>
-                <a href="#" class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors transform hover:scale-110">
-                    <i class="fab fa-whatsapp text-xl"></i>
-                </a>
-                <a href="#" class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center text-pink-600 hover:bg-pink-200 transition-colors transform hover:scale-110">
-                    <i class="fas fa-heart text-xl"></i>
-                </a>
-            </div>
-            
-            <div class="bg-pink-50 rounded-xl p-6 inline-block max-w-md">
-                <div class="title-font text-xl text-pink-600 mb-2">Para minha futura...</div>
-                <div class="text-pink-500">Com todo meu amor,</div>
-                <div class="title-font text-2xl text-pink-600 mt-2">Seu Amor</div>
-            </div>
-        </section>
-    </div>
-    
-    <!-- Footer -->
-    <footer class="bg-pink-50 py-6 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-pink-600">Feito com <i class="fas fa-heart text-pink-600"></i> especialmente para você</p>
-            <p class="text-pink-400 text-sm mt-2">© <span id="year"></span> - Nosso primeiro ano juntos</p>
-        </div>
-    </footer>
-    
-    <script>
-        // Create floating hearts
-        function createHearts() {
-            const container = document.getElementById('hearts-container');
-            const heartCount = 30;
-            
-            for (let i = 0; i < heartCount; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart text-pink-400';
-                heart.innerHTML = '<i class="fas fa-heart"></i>';
-                
-                // Random position
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                
-                // Random size
-                const size = Math.random() * 20 + 10;
-                
-                // Random animation duration and delay
-                const duration = Math.random() * 5 + 5;
-                const delay = Math.random() * 5;
-                
-                heart.style.left = `${posX}%`;
-                heart.style.top = `${posY}%`;
-                heart.style.fontSize = `${size}px`;
-                heart.style.opacity = Math.random() * 0.5 + 0.3;
-                heart.style.animationDuration = `${duration}s`;
-                heart.style.animationDelay = `${delay}s`;
-                
-                container.appendChild(heart);
+        @keyframes petal-fall {
+            0% { 
+                transform: translateY(-100vh) rotate(0deg) translateX(0);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(360deg) translateX(100px);
+                opacity: 0;
             }
         }
         
-        // Countdown timer
-        function updateCountdown() {
-            // Set your anniversary date here (YYYY, MM-1, DD)
-            const anniversaryDate = new Date(2023, 0, 1); // January 1, 2023 (MM is 0-indexed)
-            const now = new Date();
-            
-            const diff = now - anniversaryDate;
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        @keyframes confetti-fall {
+            0% { 
+                transform: translateY(-100vh) rotate(0deg); 
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(360deg); 
+                opacity: 0;
+            }
         }
         
-        // Create confetti effect
-        function createConfetti() {
-            const colors = ['#ff6b8b', '#ffb8c6', '#ff4757', '#ff8fab', '#ffc4d0'];
-            const container = document.createElement('div');
-            container.style.position = 'fixed';
-            container.style.top = '0';
-            container.style.left = '0';
-            container.style.width = '100%';
-            container.style.height = '100%';
-            container.style.pointerEvents = 'none';
-            container.style.zIndex = '1000';
+        .photo-frame {
+            border: 15px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: rotate(-5deg);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+        
+        .message-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .message-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.25);
+        }
+        
+        .btn-glow {
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #e60073, 0 0 20px #e60073;
+            }
+            to {
+                box-shadow: 0 0 10px #fff, 0 0 20px #ff4da6, 0 0 30px #ff4da6, 0 0 40px #ff4da6;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <!-- Confetti Background -->
+    <div id="confetti-container" class="fixed inset-0 overflow-hidden pointer-events-none"></div>
+    
+    <div class="max-w-4xl w-full text-center">
+        <!-- Header -->
+        <header class="mb-8 animate__animated animate__fadeInDown">
+            <h1 class="text-4xl md:text-6xl font-bold text-pink-600 dancing-font mb-2 animate__animated animate__pulse animate__infinite animate__slower">
+                Feliz 30º Aniversário <span class="heart text-red-500">❤</span> Katarina!
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-700 flex items-center justify-center">
+                <span class="floating mx-2">✨</span> 
+                30 anos de amor, beleza e alegria 
+                <span class="floating mx-2">✨</span>
+            </p>
+            <div class="mt-4 flex justify-center">
+                <div class="w-16 h-1 bg-pink-400 rounded-full"></div>
+            </div>
+        </header>
+        
+        <!-- Main Content -->
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
+            <!-- Photo Section -->
+            <div class="animate__animated animate__fadeInLeft">
+                <div class="photo-frame bg-white p-2 mx-auto max-w-xs">
+                     <img src="1.jpg" alt="">
+                    
+                </div>
+                <div class="mt-6 text-center">
+                    <p class="text-gray-600 italic">"A mulher mais linda do mundo"</p>
+                    <p class="text-sm text-gray-500 mt-1">- Francisco Diogo</p>
+                </div>
+            </div>
             
-            document.body.appendChild(container);
+            <!-- Message Section -->
+            <div class="animate__animated animate__fadeInRight">
+                <div class="message-box p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold text-pink-600 mb-4 dancing-font">Minha Querida Esposa</h2>
+                    <div class="text-left space-y-4 text-gray-700">
+                        <p>Hoje celebramos não apenas mais um ano da sua vida, mas 30 anos da existência da pessoa mais especial que eu conheço.</p>
+                        <p>Você ilumina meus dias com seu sorriso, aquece meu coração com seu amor e me inspira com sua força e bondade.</p>
+                        <p>Que este novo ciclo seja repleto de realizações, saúde, felicidade e muitos momentos inesquecíveis ao meu lado.</p>
+                        <p class="font-bold text-pink-600">Eu te amo mais do que as palavras podem expressar!</p>
+                    </div>
+                    <div class="mt-6 flex justify-center">
+                        <div class="w-12 h-12 rounded-full bg-pink-100 flex items-center justify-center floating">
+                            <i class="fas fa-heart text-pink-500 text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Special Messages -->
+        <section class="mb-12 animate__animated animate__fadeInUp">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 dancing-font">10 Razões Para Te Amar</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- 30 razões completas -->
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-star"></i></div>
+                    <p>1. Seu sorriso ilumina meu mundo</p>
+                </div>
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-heart"></i></div>
+                    <p>2. Seu coração generoso e amoroso</p>
+                </div>
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-lg hover:shadow-xl transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-magic"></i></div>
+                    <p>3. A maneira como me fazes feliz</p>
+                </div>
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-laugh-beam"></i></div>
+                    <p>4. Seu senso de humor contagiante</p>
+                </div>
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-hand-holding-heart"></i></div>
+                    <p>5. Seu apoio incondicional</p>
+                </div>
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-bolt"></i></div>
+                    <p>6. Sua energia e vitalidade</p>
+                </div>
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-moon"></i></div>
+                    <p>7. A forma como me fazes sentir em casa</p>
+                </div>
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-utensils"></i></div>
+                    <p>8. Tuas habilidades culinárias incríveis!</p>
+                </div>
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-hands-helping"></i></div>
+                    <p>9. Teu apoio nos momentos difíceis</p>
+                </div>
+                <div class="bg-white bg-opacity-80 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-pink-500 mb-2"><i class="fas fa-sun"></i></div>
+                    <p>10. Teu jeito alegre e positivo</p>
+                </div>
+            </div>
+            <button id="showMoreBtn" class="mt-6 px-6 py-2 bg-pink-500 text-white rounded-full hover:bg-pink-600 transition btn-glow">
+                Ver mais razões
+            </button>
+        </section>
+        
+        <!-- Final Message -->
+        <div class="animate__animated animate__fadeIn animate__delay-1s">
+            <div class="bg-gradient-to-r from-pink-400 to-pink-600 text-white p-8 rounded-2xl shadow-xl mb-8">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 dancing-font">Para Minha Esposa Maravilhosa</h2>
+                <p class="mb-4">Que os próximos 30 anos sejam ainda mais especiais que os primeiros, e que eu tenha a honra de estar ao seu lado em cada um deles.</p>
+                <p class="text-xl dancing-font animate__animated animate__heartBeat animate__infinite animate__slower">
+                    Feliz 30º aniversário, amor da minha vida!
+                </p>
+                <div class="mt-6 flex justify-center space-x-4">
+                    <div class="w-10 h-10 rounded-full bg-white bg-opacity-30 flex items-center justify-center animate-bounce">
+                        <i class="fas fa-kiss-wink-heart text-white"></i>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-white bg-opacity-30 flex items-center justify-center animate-bounce delay-100">
+                        <i class="fas fa-gift text-white"></i>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-white bg-opacity-30 flex items-center justify-center animate-bounce delay-200">
+                        <i class="fas fa-champagne-glasses text-white"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Signature -->
+            <div class="text-right">
+                <p class="text-gray-700">Com todo meu amor,</p>
+                <p class="text-xl font-bold text-pink-600 dancing-font">Francisco Diogo</p>
+                <div class="mt-2">
+                    <p class="text-sm text-gray-500">27/08/2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Audio Player -->
+    <div class="fixed bottom-4 right-4">
+        <button id="musicBtn" class="w-12 h-12 rounded-full bg-pink-500 text-white flex items-center justify-center shadow-lg hover:bg-pink-600 transition">
+            <i class="fas fa-music"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="https://soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            <!-- Substitua pelo link de uma música romântica de sua escolha -->
+        </audio>
+    </div>
+    
+    <script>
+        // Create confetti and petals
+        function createConfetti() {
+            // Create petals
+            for (let i = 0; i < 30; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.backgroundImage = `url('https://www.transparentpng.com/thumb/rose-petal/rose-petal-png-clipart-8.png')`;
+                petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+                petal.style.animationDelay = Math.random() * 10 + 's';
+                petal.style.width = Math.random() * 20 + 10 + 'px';
+                petal.style.height = Math.random() * 20 + 10 + 'px';
+                document.getElementById('confetti-container').appendChild(petal);
+            }
+            
+            const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50', '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800', '#FF5722'];
             
             for (let i = 0; i < 100; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = '-10px';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
                 confetti.style.width = Math.random() * 10 + 5 + 'px';
                 confetti.style.height = Math.random() * 10 + 5 + 'px';
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                
-                container.appendChild(confetti);
-                
-                const animationDuration = Math.random() * 3 + 2;
-                
-                confetti.animate([
-                    { top: '-10px', opacity: 1 },
-                    { top: '100vh', opacity: 0 }
-                ], {
-                    duration: animationDuration * 1000,
-                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 1)',
-                    fill: 'forwards'
-                });
-                
-                setTimeout(() => {
-                    confetti.remove();
-                }, animationDuration * 1000);
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                document.getElementById('confetti-container').appendChild(confetti);
             }
-            
-            setTimeout(() => {
-                container.remove();
-            }, 3000);
         }
         
-        // Set current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Music control
+        const musicBtn = document.getElementById('musicBtn');
+        const bgMusic = document.getElementById('bgMusic');
         
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            createHearts();
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+        musicBtn.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                bgMusic.pause();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+            }
+        });
+        
+        // Show more reasons
+        const showMoreBtn = document.getElementById('showMoreBtn');
+        let reasonsShown = 6;
+        
+        showMoreBtn.addEventListener('click', () => {
+            // In a real implementation, you would show more reasons or navigate to another page
+            alert('Eu te amo por infinitas razões, mas essas são algumas das principais!  ❤️');
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createConfetti();
             
-            // Add confetti effect to love button
-            document.getElementById('loveButton').addEventListener('click', function() {
-                createConfetti();
-                
-                // Create a floating heart that grows and fades out
-                const floatingHeart = document.createElement('div');
-                floatingHeart.innerHTML = '<i class="fas fa-heart"></i>';
-                floatingHeart.style.position = 'fixed';
-                floatingHeart.style.color = '#ff6b8b';
-                floatingHeart.style.fontSize = '20px';
-                floatingHeart.style.left = '50%';
-                floatingHeart.style.top = '50%';
-                floatingHeart.style.transform = 'translate(-50%, -50%)';
-                floatingHeart.style.zIndex = '1000';
-                floatingHeart.style.pointerEvents = 'none';
-                
-                document.body.appendChild(floatingHeart);
-                
-                floatingHeart.animate([
-                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
-                    { transform: 'translate(-50%, -150%) scale(3)', opacity: 0 }
-                ], {
-                    duration: 1500,
-                    easing: 'ease-out',
-                    fill: 'forwards'
+            // Animate elements on scroll
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('.animate__animated');
+                elements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        const animation = el.getAttribute('data-animate');
+                        el.classList.add(animation);
+                    }
                 });
-                
-                setTimeout(() => {
-                    floatingHeart.remove();
-                }, 1500);
-            });
+            };
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Run once on load
         });
     </script>
 </body>
